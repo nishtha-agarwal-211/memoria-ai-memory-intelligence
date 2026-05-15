@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+/* ══════════════════════════════════════════════════════════════
+   AI Memory Intelligence System — Design System
+   Futuristic dark theme with glassmorphism and glow effects
+   ══════════════════════════════════════════════════════════════ */
+
+@theme inline {
+  --color-background: #06070b;
+  --color-surface: #0d0f17;
+  --color-surface-2: #141721;
+  --color-surface-3: #1a1e2e;
+  --color-border: #1e2235;
+  --color-border-glow: rgba(99, 179, 237, 0.15);
+  
+  --color-text-primary: #e2e8f0;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+  
+  --color-accent-cyan: #22d3ee;
+  --color-accent-violet: #a78bfa;
+  --color-accent-emerald: #34d399;
+  --color-accent-amber: #fbbf24;
+  --color-accent-rose: #fb7185;
+  --color-accent-blue: #60a5fa;
+  
+  --color-glow-cyan: rgba(34, 211, 238, 0.15);
+  --color-glow-violet: rgba(167, 139, 250, 0.15);
+  --color-glow-emerald: rgba(52, 211, 153, 0.12);
+  
+  --font-sans: 'Inter', 'SF Pro Display', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+}
+
+
+/* ── Base Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ── Glassmorphism Utility Classes ── */
+.glass {
+  background: rgba(13, 15, 23, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+}
+
+.glass-strong {
+  background: rgba(13, 15, 23, 0.85);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid var(--color-border);
+}
+
+.glass-card {
+  background: rgba(20, 23, 33, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: var(--color-border-glow);
+  box-shadow: 0 0 20px var(--color-glow-cyan), inset 0 0 20px rgba(34, 211, 238, 0.03);
+}
+
+/* ── Glow Effects ── */
+.glow-cyan {
+  box-shadow: 0 0 15px var(--color-glow-cyan), 0 0 45px rgba(34, 211, 238, 0.05);
+}
+
+.glow-violet {
+  box-shadow: 0 0 15px var(--color-glow-violet), 0 0 45px rgba(167, 139, 250, 0.05);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 15px var(--color-glow-emerald), 0 0 45px rgba(52, 211, 153, 0.05);
+}
+
+.glow-text-cyan {
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.5), 0 0 40px rgba(34, 211, 238, 0.2);
+}
+
+.glow-text-violet {
+  text-shadow: 0 0 10px rgba(167, 139, 250, 0.5), 0 0 40px rgba(167, 139, 250, 0.2);
+}
+
+/* ── Animated Background Grid ── */
+.bg-grid {
+  background-image: 
+    linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Animations ── */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.05), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* ── Score Bar ── */
+.score-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-surface-3);
+  overflow: hidden;
+  position: relative;
+}
+
+.score-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Memory Type Colors ── */
+.memory-type-preference { --type-color: var(--color-accent-violet); }
+.memory-type-long_term { --type-color: var(--color-accent-cyan); }
+.memory-type-session { --type-color: var(--color-accent-emerald); }
+.memory-type-episodic { --type-color: var(--color-accent-amber); }
+.memory-type-semantic { --type-color: var(--color-accent-blue); }
+
+/* ── Typing Indicator ── */
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent-cyan);
+  animation: pulse-glow 1.4s ease-in-out infinite;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* ── Panel Layout ── */
+.panel-left {
+  width: 300px;
+  min-width: 300px;
+  border-right: 1px solid var(--color-border);
+}
+
+.panel-right {
+  width: 340px;
+  min-width: 340px;
+  border-left: 1px solid var(--color-border);
+}
+
+.panel-center {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1200px) {
+  .panel-left { width: 260px; min-width: 260px; }
+  .panel-right { width: 300px; min-width: 300px; }
+}
+
+@media (max-width: 900px) {
+  .panel-left, .panel-right { display: none; }
+}
