@@ -14,13 +14,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install and configure Git LFS
+      - name: Remove binary assets not needed for HF Space
         run: |
-          git lfs install
-          git lfs track "*.png" "*.jpg" "*.jpeg" "*.gif" "*.webp" "*.mp4" "*.webm"
-          git add .gitattributes
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
+          git rm -r --cached assets/screenshots/ .gitattributes 2>/dev/null || true
           git commit --amend --no-edit --allow-empty
 
       - name: Push to Hugging Face Space
