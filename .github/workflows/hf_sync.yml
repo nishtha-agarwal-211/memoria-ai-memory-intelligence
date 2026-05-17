@@ -18,6 +18,6 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          # Push the main branch to the Hugging Face Space Git repository
-          # Replace <username>/<space-name> with your exact Space path in GitHub secrets later!
-          git push --force https://x-access-token:$HF_TOKEN@huggingface.co/spaces/${{ secrets.HF_SPACE_PATH }} main:main
+          # Strip out the URL prefix in case the user inputs the full URL
+          CLEANED_PATH=$(echo "${{ secrets.HF_SPACE_PATH }}" | sed 's|https://huggingface.co/spaces/||g' | sed 's|^/||g')
+          git push --force https://x-access-token:$HF_TOKEN@huggingface.co/spaces/$CLEANED_PATH main:main
