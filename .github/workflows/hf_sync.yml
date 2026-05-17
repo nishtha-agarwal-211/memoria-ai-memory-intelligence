@@ -1,0 +1,23 @@
+name: Sync to Hugging Face Space
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Push to Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          # Push the main branch to the Hugging Face Space Git repository
+          # Replace <username>/<space-name> with your exact Space path in GitHub secrets later!
+          git push --force https://x-access-token:$HF_TOKEN@huggingface.co/spaces/${{ secrets.HF_SPACE_PATH }} main:main
