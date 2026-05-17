@@ -14,12 +14,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Remove binary assets not needed for HF Space
+      - name: Strip binary assets from history for HF push
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git rm -r --cached assets/screenshots/ .gitattributes 2>/dev/null || true
-          git commit --amend --no-edit --allow-empty
+          # Completely remove screenshot assets from all history
+          git filter-branch --force --index-filter \
+            'git rm -r --cached --ignore-unmatch assets/screenshots/' \
+            --prune-empty -- --all
 
       - name: Push to Hugging Face Space
         env:
