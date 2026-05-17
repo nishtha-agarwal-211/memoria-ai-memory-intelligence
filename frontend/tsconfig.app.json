@@ -16,7 +16,6 @@
     "jsx": "react-jsx",
 
     /* Path aliases for shadcn/ui */
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
