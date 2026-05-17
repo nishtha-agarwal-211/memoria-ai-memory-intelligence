@@ -1,3 +1,13 @@
+---
+title: Memoria AI Memory Intelligence
+emoji: 🧠
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # 🧠 Memoria — AI Memory Intelligence System
 
 > An intelligent memory orchestration layer for AI assistants — without retraining the model.
